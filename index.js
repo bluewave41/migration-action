@@ -36,6 +36,7 @@ async function start() {
   const highestCommitMigration = getHighestMigration(commitFiles);
 
   if (highestCommitMigration <= currentHighestMigration) {
+    await git.fetch();
     await git.checkout(event.pull_request.base.ref);
     for (const file of commitFiles) {
       const newName = file.split("_");
