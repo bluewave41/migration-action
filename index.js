@@ -31,7 +31,7 @@ async function start() {
   let currentHighestMigration = getHighestMigration(repoFiles);
   const highestCommitMigration = getHighestMigration(commitFiles);
 
-  if (highestCommitMigration >= currentHighestMigration) {
+  if (highestCommitMigration <= currentHighestMigration) {
     for (const file of commitFiles) {
       const newName = file.split("_");
       newName[0] = pad(++currentHighestMigration, 4, "0");
