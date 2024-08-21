@@ -4,7 +4,9 @@ const fs = require("fs").promises;
 const axios = require("axios");
 const simpleGit = require("simple-git");
 
-const git = simpleGit();
+const git = simpleGit()
+  .addConfig("user.name", "Starmaker-bot")
+  .addConfig("user.email", "matthew@silverorange.com");
 
 async function start() {
   // the main folder contains our repo code
@@ -39,9 +41,7 @@ async function start() {
       await git.mv(`${path}/${file}`, `${path}/${newName.join("_")}`);
     }
     await git.add(".");
-    await git.commit("Update migration IDs", {
-      "--author": ':Starmaker-bot <matthew@silverorange.com>"',
-    });
+    await git.commit("Update migration IDs");
     await git.push(pushUrl, github.context.base_ref);
   }
 }
