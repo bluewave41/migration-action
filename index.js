@@ -13,6 +13,7 @@ async function start() {
   const repoFiles = await fs.readdir(path);
   //const payload = JSON.parse(await fs.readFile("event.json"));
   const payload = github.context.payload;
+  console.log(JSON.stringify(payload));
   const pushUrl = payload.event.pull_request.base.repo.clone_url.replace(
     "//",
     `//Starmaker-bot:${process.env.TOKEN}@`
