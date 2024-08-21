@@ -36,7 +36,7 @@ async function start() {
   const highestCommitMigration = getHighestMigration(commitFiles);
 
   if (highestCommitMigration <= currentHighestMigration) {
-    await git.checkout(github.context.base_ref);
+    await git.checkout(event.pull_request.base.ref);
     for (const file of commitFiles) {
       const newName = file.split("_");
       newName[0] = pad(++currentHighestMigration, 4, "0");
@@ -44,7 +44,7 @@ async function start() {
     }
     await git.add(".");
     await git.commit("Update migration IDs");
-    await git.push(pushUrl, event.base.ref);
+    await git.push(pushUrl, event.pull_request.base.ref);
   }
 }
 
