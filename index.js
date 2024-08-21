@@ -25,6 +25,8 @@ async function start() {
     "/" + github.context.sha
   );
 
+  console.log(JSON.stringify(github));
+
   const commits = await axios.get(commitsUrl);
   const commitFiles = commits.data.files.map((file) =>
     file.filename.split("/").at(-1)
