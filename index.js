@@ -37,7 +37,7 @@ async function start() {
       newName[0] = pad(++currentHighestMigration, 4, "0");
       await git.mv(`${path}/${file}`, `${path}/${newName.join("_")}`);
     }
-    await git.push(pushUrl, payload.base_ref);
+    await git.push(pushUrl, github.context.base_ref);
   }
 }
 
