@@ -20,8 +20,6 @@ async function start() {
     `//Starmaker-bot:${process.env.TOKEN}@`
   );
 
-  await fs.writeFile("log.json", JSON.stringify(github));
-
   const commitsUrl = event.repository.commits_url.replace(
     "{/sha}",
     "/" + github.context.sha
