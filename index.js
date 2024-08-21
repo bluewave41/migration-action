@@ -39,7 +39,9 @@ async function start() {
       await git.mv(`${path}/${file}`, `${path}/${newName.join("_")}`);
     }
     await git.add(".");
-    await git.commit("Update migration IDs");
+    await git.commit("Update migration IDs", {
+      "--author": ':Starmaker-bot <matthew@silverorange.com>"',
+    });
     await git.push(pushUrl, github.context.base_ref);
   }
 }
