@@ -20,7 +20,7 @@ async function start() {
     `//Starmaker-bot:${process.env.TOKEN}@`
   );
 
-  console.log(JSON.stringify(event));
+  console.log(event.base.ref);
 
   const commitsUrl = event.repository.commits_url.replace(
     "{/sha}",
@@ -44,7 +44,7 @@ async function start() {
     }
     await git.add(".");
     await git.commit("Update migration IDs");
-    await git.push(pushUrl, event.base_ref);
+    await git.push(pushUrl, event.base.ref);
   }
 }
 
