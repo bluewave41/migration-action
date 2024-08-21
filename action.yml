@@ -1,0 +1,9 @@
+name: "Migration Action"
+description: "Rename migrations based off of names"
+inputs:
+  path:
+    description: "Path of folder to watch"
+    required: true
+runs:
+  using: "node20"
+  main: "index.js"
