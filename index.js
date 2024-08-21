@@ -20,6 +20,8 @@ async function start() {
     `//Starmaker-bot:${process.env.TOKEN}@`
   );
 
+  console.log(JSON.stringify(event));
+
   const commitsUrl = event.repository.commits_url.replace(
     "{/sha}",
     "/" + github.context.sha
