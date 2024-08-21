@@ -12,16 +12,16 @@ async function start() {
   //const path = "server";
   const repoFiles = await fs.readdir(path);
   //const payload = JSON.parse(await fs.readFile("event.json"));
-  const payload = github.context.payload;
+  const event = github.context.payload;
   console.log(JSON.stringify(payload));
-  const pushUrl = payload.pull_request.base.repo.clone_url.replace(
+  const pushUrl = event.pull_request.base.repo.clone_url.replace(
     "//",
     `//Starmaker-bot:${process.env.TOKEN}@`
   );
 
-  const commitsUrl = payload.repository.commits_url.replace(
+  const commitsUrl = event.repository.commits_url.replace(
     "{/sha}",
-    "/" + payload.sha
+    "/" + github.context.sha
   );
 
   const commits = await axios.get(commitsUrl);
